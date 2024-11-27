@@ -27,9 +27,10 @@ bool ConvertGrpcTfToRosTf(
   msg->transforms.reserve(grpc_msg.transforms_size());
   for (const auto& transform_grpc : grpc_msg.transforms()) {
     geometry_msgs::msg::TransformStamped transform_ros;
-    kachaka::grpc_ros2_bridge::converter::ConvertGrpcHeaderToRos2Header(
-        transform_grpc.header(), &(transform_ros.header));
+    kachaka::grpc_ros2_bridge::converter::ConvertGrpcHeaderToRos2Header(transform_grpc.header(), &(transform_ros.header));
 
+    if (transform_ros.header.frame_id == "map") continue; //add by ry0hei, 202411128
+     
     transform_ros.child_frame_id = transform_grpc.child_frame_id();
     transform_ros.transform.translation.x = transform_grpc.translation().x();
     transform_ros.transform.translation.y = transform_grpc.translation().y();

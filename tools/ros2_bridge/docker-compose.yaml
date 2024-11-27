@@ -2,7 +2,8 @@ version: "2.4"
 
 services:
   ros2_bridge:
-    image: "asia-northeast1-docker.pkg.dev/kachaka-api/docker/kachaka-grpc-ros2-bridge:${TAG}"
+    #image: "asia-northeast1-docker.pkg.dev/kachaka-api/docker/kachaka-grpc-ros2-bridge:${TAG}"
+    image: "kachaka-api:latest"
     network_mode: "host"
     ipc: "host"
     pid: "host"
